@@ -126,19 +126,6 @@ retcode print_mnist_char(struct dataset *dat, int i) {
   putchar('\n');
   return SUCCESS;
 }
-// without braces, just for debugging
-retcode print_matrix(struct matrix mat) {
-  for (int j = 0; j < mat.x; ++j) {
-    for (int k = 0; k < mat.y; ++k) {
-      fprintf(stdout, "%.3f ", mat.e[ j * mat.y + k]);
-    }
-
-    putchar('\n');
-  }
-
-  putchar('\n');
-  return SUCCESS;
-}
 void matrix_zero(struct matrix mat) {
   memset(mat.e, 0, mat.x * mat.y * sizeof(float));
 }
@@ -238,29 +225,6 @@ void sigmoid_activate(matrix activations, matrix biases) {
 }
 float sigmoid_deriv(float result) {
   return result * (1.0f - result);
-}
-int test_shuffle() {
-  int data_index[10];
-  int i = 0;
-
-  for (i = 0; i < 10; ++i) {
-    data_index[i] = i;
-    fprintf(stdout, "%d ", i);
-  }
-
-  putchar('\n');
-
-  for (int k = 0; k < 10; ++k) {
-    shuffle(data_index, 10);
-
-    for (i = 0; i < 10; ++i) {
-      fprintf(stdout, "%d ", data_index[i]);
-    }
-
-    putchar('\n');
-  }
-
-  return SUCCESS;
 }
 int feedforward(struct neural_layer mnist_layers[], const int neural_layers) {
   // propigate the layers
@@ -426,6 +390,5 @@ retcode mnist_neural_network_process() {
 }
 retcode main() {
   srand(0xDEADBEEF);
-  //return test_shuffle();
   return mnist_neural_network_process();
 }
