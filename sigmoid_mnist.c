@@ -257,7 +257,7 @@ retcode mnist_neural_network_process() {
   retfail(load_mnist(&dat, "train-images-idx3-ubyte", "train-labels-idx1-ubyte"));
   retfail(load_mnist(&test, "t10k-images-idx3-ubyte", "t10k-labels-idx1-ubyte"));
 
-  fprintf(stdout, "Initializing softmax net...\n");
+  fprintf(stdout, "Initializing sigmoid net...\n");
   const int pixcount = dat.columns * dat.rows;
   struct neural_layer mnist_layers[] = {
     {
@@ -295,7 +295,7 @@ retcode mnist_neural_network_process() {
     data_index[i] = i;
   }
 
-  fprintf(stdout, "Training softmax net...\n");
+  fprintf(stdout, "Training sigmoid net...\n");
 
   for (int e = 0; e < epochs; ++e) {
     int correct_count = 0;
