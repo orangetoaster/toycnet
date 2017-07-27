@@ -1,0 +1,18 @@
+This is a concise sigmoid nn over mnist in c for illustration/education purposes. 
+Note that it's single core and doesn't have some basic features such as minibatch.
+
+The only dependancies are libc. Assumed to be for x86 for loading mnist.
+
+Fetch the MNIST dataset:
+ curl -O http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz -O http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz -O http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz -O http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+ gunzip *.gz
+
+Compile:
+  For optimized, use:
+  gcc -lm -O3 -std=c99 -Wall -DNDEBUG sigmoid_mnist.c -o sigmoid_mnist
+
+  For debug, use:
+  clang -lm -DDEBUG -g -std=c99 -Wall sigmoid_mnist.c -o sigmoid_mnist_dbg
+
+Run:
+  ./sigmoid_mnist
